@@ -100,7 +100,7 @@ h3 {
 
 .btn-OBPD:active {
     background-color: var(--primary-color-active); /* Use active shade */
-    transform: scale(0.98); /* Slightly scale down on click */
+    transform: scale(0.98); 
 }
 
 /* Footer Styles */
@@ -131,4 +131,5 @@ h3 {
         padding: 20px;
         font-size: 22px;
     }
+
 }
