@@ -28,15 +28,15 @@ body {
 
 /* Header Styles */
 .site-header {
-    width: 100%;
+    width: 100vw;
     background-color: #fff; /* Background color for the header */
-    padding: 20px 0;
+    padding: 10px 0;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better separation */
 }
 
 .OBPD-logo img {
-    max-width: 150px; /* Adjust logo size */
+    max-width: 100px; /* Adjust logo size */
     height: auto;
 }
 
