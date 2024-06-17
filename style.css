@@ -119,7 +119,7 @@ h3 {
        only screen and (min-device-width: 1366px) and (max-device-width: 1024px) and (orientation: landscape) {
     body {
         font-size: 18px;
-        padding: 20px;
+        /* padding: 20px; */
     }
 
     h3 {
