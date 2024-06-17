@@ -44,10 +44,11 @@ body {
 .OBPD_main_Content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     flex: 1; /* Ensure the main section takes the available space */
     width: 100%;
+    margin-top: 50px;
 }
 
 /* Content Styles */
