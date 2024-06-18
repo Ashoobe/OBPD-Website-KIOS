@@ -48,7 +48,7 @@ body {
     align-items: center;
     flex: 1; /* Ensure the main section takes the available space */
     width: 100%;
-    background-image: url("/background.JPG");
+    background-image: url("background.JPG");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
