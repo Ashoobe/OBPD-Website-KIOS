@@ -67,6 +67,7 @@ h3 {
     margin-top: 20px;
     background-color: rgba(255, 255, 255, 0.89);
     padding: 10px;
+    border-radius: 20px;
 }
 
 /* Button Styles */
@@ -77,7 +78,7 @@ h3 {
     width: 80%; /* Set a width for the button container */
     max-width: 300px; /* Limit the maximum width */
     margin: 20px auto; /* Center align and add top margin */
-    background-color: rgba(0, 0, 0, 0.432);
+    background-color: rgba(0, 0, 0, 0.199);
     padding: 20px;
 }
 
