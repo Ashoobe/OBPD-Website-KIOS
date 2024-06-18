@@ -19,7 +19,7 @@ body {
     font-size: 16px;
     line-height: 1.5;
     color: var(--text-color);
-    background-color: #eeeeee; /* Light background color for contrast */
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Ensure the body takes the full viewport height */
@@ -48,7 +48,10 @@ body {
     align-items: center;
     flex: 1; /* Ensure the main section takes the available space */
     width: 100%;
-    margin-top: 50px;
+    background-image: url("/background.JPG");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 /* Content Styles */
@@ -58,10 +61,12 @@ body {
 }
 
 h3 {
-    margin-top: 10px;
     font-size: 34px;
     color: var(--text-color); /* Use text color */
     font-weight: bold;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.89);
+    padding: 10px;
 }
 
 /* Button Styles */
@@ -72,6 +77,8 @@ h3 {
     width: 80%; /* Set a width for the button container */
     max-width: 300px; /* Limit the maximum width */
     margin: 20px auto; /* Center align and add top margin */
+    background-color: rgba(0, 0, 0, 0.432);
+    padding: 20px;
 }
 
 .btn-OBPD {
