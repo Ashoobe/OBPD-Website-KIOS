@@ -64,7 +64,6 @@ h3 {
     font-size: 34px;
     color: var(--text-color); /* Use text color */
     font-weight: bold;
-    margin-top: 20px;
     background-color: rgba(255, 255, 255, 0.89);
     padding: 10px;
     border-radius: 20px;
@@ -95,16 +94,14 @@ h3 {
     transition: background-color 0.3s, transform 0.1s;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); /* Add slight shadow */
     height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .btn-OBPD:hover {
     background-color: var(--primary-color-hover); /* Use hover shade */
-}
-
-.btn-OBPD a {
-    color: inherit; /* Inherit the color from the button */
-    text-decoration: none;
-    display: block; /* Make the link fill the button area */
 }
 
 .btn-OBPD:active {
@@ -120,7 +117,6 @@ h3 {
     margin: auto;
     margin-top: auto; /* Push footer to the bottom */
     border-top: 1px solid var(--primary-color);
-
 }
 
 /* iPad Pro 12.9-inch Specific Styles */
@@ -140,5 +136,4 @@ h3 {
         padding: 20px;
         font-size: 22px;
     }
-
 }
