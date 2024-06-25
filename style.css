@@ -73,12 +73,11 @@ h3 {
 .button-contents {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     width: 80%; /* Set a width for the button container */
     max-width: 400px; /* Limit the maximum width */
-    margin: 20px auto; /* Center align and add top margin */
-    background-color: rgba(0, 0, 0, 0.199);
-    padding: 20px;
+    margin: 10px auto; /* Center align and add top margin */
+    
 }
 
 .btn-OBPD {
@@ -92,13 +91,17 @@ h3 {
     width: 100%; /* Make the button fill the container width */
     text-align: center;
     transition: background-color 0.3s, transform 0.1s;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); /* Add slight shadow */
+    box-shadow: 5px 15px#222222b2; /* Add slight shadow */
     height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     margin-top: 20px;;
+}
+
+.btn-OBPD {
+    width: 420px;
 }
 
 .btn-OBPD:hover {
