@@ -7,9 +7,9 @@
 
 /* Define CSS Variables */
 :root {
-    --primary-color: #648C0E;
-    --primary-color-hover: #506e0b; /* Slightly darker shade for hover state */
-    --primary-color-active: #405808; /* Even darker shade for active state */
+    --primary-color: #1174BB;
+    --primary-color-hover: #0e5fa0; /* Slightly darker shade for hover state */
+    --primary-color-active: #0b4d85; /* Even darker shade for active state */
     --text-color: #1b3d18; /* Dark green for text */
 }
 
@@ -110,6 +110,31 @@ h3 {
 .btn-OBPD:active {
     background-color: var(--primary-color-active); /* Use active shade */
     transform: scale(0.98); 
+}
+
+/* Custom Button Colors */
+.btn-pink5k {
+    background-color: #EE317D;
+}
+
+.btn-pink5k:hover {
+    background-color: #d12a6e;
+}
+
+.btn-pink5k:active {
+    background-color: #b8245f;
+}
+
+.btn-tryathlon {
+    background-color: #EE2F2F;
+}
+
+.btn-tryathlon:hover {
+    background-color: #d42929;
+}
+
+.btn-tryathlon:active {
+    background-color: #ba2323;
 }
 
 /* Footer Styles */
