@@ -137,6 +137,33 @@ h3 {
     background-color: #ba2323;
 }
 
+.btn-onhold {
+    background-color: #F5C400;
+    color: #1b1b1b;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.btn-onhold:hover {
+    background-color: #ddb000;
+}
+
+.btn-onhold:active {
+    background-color: #c49c00;
+}
+
+.btn-line-top {
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.btn-line-bottom {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 1.2;
+}
+
 /* Footer Styles */
 .site-footer {
     width: 100%;
