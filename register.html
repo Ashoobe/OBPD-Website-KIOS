@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Register — Oak Brook Park District - Pink 5K</title>
+    <style>
+        /* ── Reset ─────────────────────────────────────────────── */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ── Root Variables ─────────────────────────────────────── */
+        :root {
+            --pink:        #EE317D;
+            --pink-light:  #ff4d90;
+            --pink-glow:   rgba(238, 49, 125, 0.65);
+            --purple:      #9333ea;
+            --purple-dark: #6B21A8;
+            --purple-glow: rgba(147, 51, 234, 0.45);
+            --black:       #0a0a0f;
+            --glass:       rgba(10, 10, 15, 0.28);
+        }
+
+        /* ── Base ───────────────────────────────────────────────── */
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--black);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        }
+
+        /* ── Slideshow Layer ─────────────────────────────────────── */
+        .slideshow {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.8s ease-in-out;
+            will-change: transform, opacity;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* Zoom IN — odd slides */
+        .slide.active.zoom-in {
+            animation: kenBurnsIn 14s ease-in-out forwards;
+        }
+
+        /* Zoom OUT — even slides */
+        .slide.active.zoom-out {
+            animation: kenBurnsOut 14s ease-in-out forwards;
+        }
+
+        .slide.exit {
+            opacity: 0;
+        }
+
+        @keyframes kenBurnsIn {
+            0%   { transform: scale(1)    translate(0, 0); }
+            100% { transform: scale(1.12) translate(-1.5%, -1%); }
+        }
+
+        @keyframes kenBurnsOut {
+            0%   { transform: scale(1.12) translate(-1.5%, -1%); }
+            100% { transform: scale(1)    translate(0, 0); }
+        }
+
+        /* ── Dark Overlay ────────────────────────────────────────── */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(
+                    160deg,
+                    rgba(0, 0, 0, 0.82) 0%,
+                    rgba(107, 33, 168, 0.35) 40%,
+                    rgba(238, 49, 125, 0.15) 70%,
+                    rgba(0, 0, 0, 0.88) 100%
+                );
+        }
+
+        /* subtle vignette on top */
+        .overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.55) 100%);
+        }
+
+        /* ── Content Layer ───────────────────────────────────────── */
+        .content {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(24px, 5vw, 60px);
+            gap: clamp(28px, 5vh, 56px);
+            text-align: center;
+        }
+
+        /* ── Logo ────────────────────────────────────────────────── */
+        .logo-wrap {
+            position: fixed;
+            top: clamp(18px, 3vh, 36px);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        .logo-wrap img {
+            height: clamp(56px, 8vh, 90px);
+            width: auto;
+            filter: drop-shadow(0 2px 12px rgba(0,0,0,0.7));
+        }
+
+        /* ── Event Label ─────────────────────────────────────────── */
+        .event-label {
+            font-size: clamp(13px, 2vw, 18px);
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.65);
+            border: 1px solid rgba(238, 49, 125, 0.4);
+            padding: 6px 20px;
+            border-radius: 40px;
+            background: rgba(238, 49, 125, 0.08);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        /* ── Main "Register" Title ───────────────────────────────── */
+        .register-title {
+            font-size: clamp(72px, 16vw, 180px);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            text-transform: uppercase;
+
+            /* Gradient text */
+            background: linear-gradient(135deg, #ff4d90 0%, #EE317D 30%, #c026d3 65%, #9333ea 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            /* Glow via filter */
+            filter: drop-shadow(0 0 24px var(--pink-glow))
+                    drop-shadow(0 0 48px var(--purple-glow));
+
+            animation: titleGlow 3.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from {
+                filter: drop-shadow(0 0 18px var(--pink-glow))
+                        drop-shadow(0 0 36px var(--purple-glow));
+            }
+            to {
+                filter: drop-shadow(0 0 40px rgba(238,49,125,0.85))
+                        drop-shadow(0 0 80px rgba(147,51,234,0.6))
+                        drop-shadow(0 0 100px rgba(238,49,125,0.3));
+            }
+        }
+
+        /* ── Decorative line ─────────────────────────────────────── */
+        .divider {
+            width: clamp(80px, 15vw, 180px);
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--pink), var(--purple), transparent);
+            border-radius: 2px;
+            opacity: 0.7;
+        }
+
+        /* ── Register Button ─────────────────────────────────────── */
+        .register-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: clamp(18px, 2.8vh, 26px) clamp(40px, 8vw, 80px);
+            font-size: clamp(18px, 3.2vw, 28px);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #fff;
+
+            /* Gradient + glass border */
+            background: linear-gradient(135deg, var(--pink) 0%, #d4257a 40%, var(--purple-dark) 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.18);
+            border-radius: 60px;
+
+            /* Shadows */
+            box-shadow:
+                0 6px 30px var(--pink-glow),
+                0 2px 0 rgba(255,255,255,0.12) inset,
+                0 -2px 0 rgba(0,0,0,0.25) inset;
+
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            animation: btnPulse 2.8s ease-in-out infinite;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .register-btn .btn-arrow {
+            display: inline-block;
+            font-size: 1.1em;
+            transition: transform 0.25s ease;
+        }
+
+        .register-btn:hover,
+        .register-btn:focus-visible {
+            transform: translateY(-5px) scale(1.03);
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--pink) 40%, var(--purple) 100%);
+            box-shadow:
+                0 16px 50px rgba(238, 49, 125, 0.75),
+                0 0 0 2px rgba(238,49,125,0.3),
+                0 2px 0 rgba(255,255,255,0.15) inset;
+            outline: none;
+        }
+
+        .register-btn:hover .btn-arrow {
+            transform: translateX(5px);
+        }
+
+        .register-btn:active {
+            transform: translateY(0) scale(0.97);
+            box-shadow: 0 4px 20px var(--pink-glow);
+        }
+
+        @keyframes btnPulse {
+            0%, 100% {
+                box-shadow: 0 6px 30px var(--pink-glow), 0 0 0 0 rgba(238,49,125,0.35);
+            }
+            50% {
+                box-shadow: 0 8px 40px rgba(238,49,125,0.65), 0 0 0 12px rgba(238,49,125,0);
+            }
+        }
+
+        /* ── Sub-text beneath button ─────────────────────────────── */
+        .sub-text {
+            font-size: clamp(11px, 1.5vw, 15px);
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ── Slide dots ──────────────────────────────────────────── */
+        .dots {
+            position: fixed;
+            bottom: clamp(20px, 3vh, 36px);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: var(--pink);
+            width: 24px;
+            border-radius: 4px;
+            border-color: var(--pink);
+            box-shadow: 0 0 10px var(--pink-glow);
+        }
+
+        /* ── Glass card behind title ─────────────────────────────── */
+        .glass-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(12px, 2.5vh, 24px);
+            padding: clamp(24px, 4vw, 48px) clamp(32px, 6vw, 80px);
+            background: var(--glass);
+            backdrop-filter: blur(8px) saturate(1.2);
+            -webkit-backdrop-filter: blur(8px) saturate(1.2);
+            border: 1px solid rgba(238, 49, 125, 0.28);
+            border-radius: clamp(20px, 3vw, 36px);
+            box-shadow:
+                0 8px 60px rgba(0,0,0,0.5),
+                0 0 0 1px rgba(255,255,255,0.04) inset;
+        }
+
+        /* ── iPad-specific responsive ────────────────────────────── */
+
+        /* iPad mini/Air portrait (768×1024) */
+        @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+            .register-title { font-size: clamp(90px, 18vw, 130px); }
+            .register-btn   { font-size: 22px; padding: 22px 60px; }
+        }
+
+        /* iPad mini/Air landscape (1024×768) */
+        @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .register-title { font-size: clamp(70px, 13vw, 110px); }
+            .register-btn   { font-size: 20px; padding: 18px 52px; }
+            .glass-card     { padding: 20px 48px; gap: 14px; }
+        }
+
+        /* iPad Pro 11-inch portrait (834×1194) */
+        @media only screen and (min-width: 820px) and (max-width: 1024px) and (orientation: portrait) {
+            .register-title { font-size: clamp(100px, 19vw, 150px); }
+        }
+
+        /* iPad Pro 12.9-inch portrait (1024×1366) */
+        @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
+            .register-title { font-size: clamp(110px, 17vw, 175px); }
+            .register-btn   { font-size: 28px; padding: 26px 80px; }
+        }
+
+        /* iPad Pro 12.9-inch landscape */
+        @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+            .register-title { font-size: clamp(90px, 14vw, 145px); }
+            .register-btn   { font-size: 25px; padding: 24px 70px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Logo ──────────────────────────────────────────────── -->
+    <div class="logo-wrap">
+        <img src="OBPD-logo.png" alt="Oak Brook Park District Logo">
+    </div>
+
+    <!-- ── Slideshow Background ──────────────────────────────── -->
+    <div class="slideshow" id="slideshow">
+        <!-- Slides are injected by JS from the slides array below -->
+    </div>
+
+    <!-- ── Dark Overlay ──────────────────────────────────────── -->
+    <div class="overlay"></div>
+
+    <!-- ── Main Content ──────────────────────────────────────── -->
+    <div class="content">
+        <div class="glass-card">
+            <span class="event-label">Oak Brook Park District - Pink 5K</span>
+
+            <h1 class="register-title">Register</h1>
+
+            <div class="divider"></div>
+
+            <a
+                class="register-btn"
+                href="https://runsignup.com/Race/IL/OakBrook/OakBrookPink5k"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Sign Up Now <span class="btn-arrow">&#8594;</span>
+            </a>
+
+            <p class="sub-text">Tap below to complete your registration</p>
+        </div>
+    </div>
+
+    <!-- ── Slide Dots ─────────────────────────────────────────── -->
+    <div class="dots" id="dots"></div>
+
+    <!-- ── Slideshow Script ───────────────────────────────────── -->
+    <script>
+        // ── Slideshow images ───────────────────────────────────────
+        const slides = [
+            'pictures/pink5k.jpg',
+            'pictures/pink5k-2.jpg',
+            'pictures/pink5k-3.jpg',
+            'pictures/pink5k-4.jpg',
+        ];
+
+        const container  = document.getElementById('slideshow');
+        const dotsWrap   = document.getElementById('dots');
+        let current      = 0;
+        let timer;
+
+        // Alternate zoom direction per slide index
+        function zoomClass(index) {
+            return index % 2 === 0 ? 'zoom-in' : 'zoom-out';
+        }
+
+        // Build slide divs & dot indicators
+        slides.forEach((src, i) => {
+            const div = document.createElement('div');
+            div.className = 'slide' + (i === 0 ? ` active ${zoomClass(0)}` : '');
+            div.style.backgroundImage = `url('${src}')`;
+            container.appendChild(div);
+
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.addEventListener('click', () => goTo(i));
+            dotsWrap.appendChild(dot);
+        });
+
+        // Only animate if more than one slide
+        if (slides.length > 1) startSlideshow();
+
+        function goTo(index) {
+            const allSlides = container.querySelectorAll('.slide');
+            const allDots   = dotsWrap.querySelectorAll('.dot');
+
+            const leaving = allSlides[current];
+            leaving.classList.remove('active');
+            leaving.classList.add('exit');
+            allDots[current].classList.remove('active');
+
+            setTimeout(() => {
+                leaving.classList.remove('exit', 'zoom-in', 'zoom-out');
+            }, 1800);
+
+            current = index;
+            const arriving = allSlides[current];
+            // Force restart of animation by removing then re-adding class
+            arriving.classList.remove('zoom-in', 'zoom-out');
+            void arriving.offsetWidth; // reflow
+            arriving.classList.add('active', zoomClass(current));
+            allDots[current].classList.add('active');
+        }
+
+        function next() {
+            goTo((current + 1) % slides.length);
+        }
+
+        function startSlideshow() {
+            timer = setInterval(next, 12000);
+        }
+    </script>
+
+</body>
+</html>
