@@ -187,10 +187,19 @@
             opacity: 0.7;
         }
 
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: min(92vw, 620px);
+            align-items: center;
+        }
+
         /* ── Register Button ─────────────────────────────────────── */
         .register-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 14px;
             padding: clamp(18px, 2.8vh, 26px) clamp(40px, 8vw, 80px);
             font-size: clamp(18px, 3.2vw, 28px);
@@ -199,6 +208,7 @@
             text-transform: uppercase;
             text-decoration: none;
             color: #fff;
+            width: 100%;
 
             /* Gradient + glass border */
             background: linear-gradient(135deg, var(--pink) 0%, #d4257a 40%, var(--purple-dark) 100%);
@@ -218,6 +228,15 @@
             transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
             animation: btnPulse 2.8s ease-in-out infinite;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        .register-btn.secondary {
+            background: linear-gradient(135deg, #5b2bbf 0%, #9333ea 45%, #7c3aed 100%);
+            box-shadow:
+                0 6px 30px var(--purple-glow),
+                0 2px 0 rgba(255,255,255,0.12) inset,
+                0 -2px 0 rgba(0,0,0,0.25) inset;
+            animation: btnPulseSecondary 2.8s ease-in-out infinite;
         }
 
         .register-btn .btn-arrow {
@@ -241,6 +260,15 @@
             transform: translateX(5px);
         }
 
+        .register-btn.secondary:hover,
+        .register-btn.secondary:focus-visible {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 45%, #9333ea 100%);
+            box-shadow:
+                0 16px 50px rgba(147, 51, 234, 0.72),
+                0 0 0 2px rgba(147,51,234,0.3),
+                0 2px 0 rgba(255,255,255,0.15) inset;
+        }
+
         .register-btn:active {
             transform: translateY(0) scale(0.97);
             box-shadow: 0 4px 20px var(--pink-glow);
@@ -252,6 +280,15 @@
             }
             50% {
                 box-shadow: 0 8px 40px rgba(238,49,125,0.65), 0 0 0 12px rgba(238,49,125,0);
+            }
+        }
+
+        @keyframes btnPulseSecondary {
+            0%, 100% {
+                box-shadow: 0 6px 30px var(--purple-glow), 0 0 0 0 rgba(147,51,234,0.35);
+            }
+            50% {
+                box-shadow: 0 8px 40px rgba(147,51,234,0.6), 0 0 0 12px rgba(147,51,234,0);
             }
         }
 
@@ -367,16 +404,27 @@
 
             <div class="divider"></div>
 
-            <a
-                class="register-btn"
-                href="https://runsignup.com/Race/IL/OakBrook/OakBrookPink5k"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Sign Up Now <span class="btn-arrow">&#8594;</span>
-            </a>
+            <div class="action-buttons">
+                <a
+                    class="register-btn"
+                    href="https://runsignup.com/Race/IL/OakBrook/OakBrookPink5k"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Sign Up Now <span class="btn-arrow">&#8594;</span>
+                </a>
 
-            <p class="sub-text">Tap below to complete your registration</p>
+                <a
+                    class="register-btn secondary"
+                    href="https://runsignup.com/Race/FindARunner/?raceId=157163"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Look Up Your Bib # <span class="btn-arrow">&#8594;</span>
+                </a>
+            </div>
+
+            <p class="sub-text">Choose an option below to register or find your bib number</p>
         </div>
     </div>
 
